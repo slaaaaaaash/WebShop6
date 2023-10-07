@@ -1,4 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
 
 namespace WebShop6;
 public class Login
@@ -23,7 +24,8 @@ public class Login
                 Console.Write("Username: ");
                 UserName = Console.ReadLine();
                 Console.Write("Password: ");
-                UserPassword = Console.ReadLine();
+                UserPassword = Login.MaskedPass();
+                Console.WriteLine();
                 if (UserPassword.Length <= 0 || UserName.Length <= 0)
                 {
                     Console.WriteLine("Please make sure you've actually entered both a username and a password.");
@@ -94,5 +96,34 @@ public class Login
         }
         else
             return false;
+    }
+
+    private static string MaskedPass()
+    {
+        string pass = string.Empty;
+        ConsoleKeyInfo key;
+
+        do
+        {
+            key = Console.ReadKey(true);
+            if (key.Key != ConsoleKey.Backspace && key.Key != ConsoleKey.Enter)
+            {
+                pass += key.KeyChar;
+                Console.Write("*");
+            }
+            else
+            {
+                if (key.Key == ConsoleKey.Backspace && pass.Length > 0)
+                {
+                    pass = pass.Substring(0, (pass.Length - 1));
+                    Console.Write("\b \b");
+                }
+                else if (key.Key == ConsoleKey.Enter)
+                {
+                    break;
+                }
+            }
+        }while (key.Key != ConsoleKey.Enter) ;
+        return pass;
     }
 }
