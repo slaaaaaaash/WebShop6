@@ -9,6 +9,7 @@ public class Login
         string? UserPassword;
         bool validInput;
         bool validPassword;
+
         do
         {
             validPassword = true;
@@ -49,23 +50,45 @@ public class Login
     }
     private static bool ValidateUser(string username, string password)
     {
-        string[] listUsers = File.ReadAllLines("../../../Users.csv");
-        bool validLogin = false;
-        foreach (string user in listUsers)
+        string[] listCustomers= File.ReadAllLines("../../../Customers.csv");
+        bool validCustomerLogin = false;
+        foreach (string customer in listCustomers)
         {
-            string[] userInfo = user.Split(",");
-            string userN = userInfo[0];
-            string userP = userInfo[1];
-            if(userN == username && userP == password)
+            string[] customerInfo = customer.Split(",");
+            string customerUsername = customerInfo[0];
+            string customerPassword = customerInfo[1];
+            if(customerUsername == username && customerPassword == password)
             {
-                validLogin = true;
+                validCustomerLogin = true;
             }
             else
             {
-               validLogin = false;
+               validCustomerLogin = false;
             }
         }
-        if (validLogin)
+
+        string[] listAdmins = File.ReadAllLines("../../../Admins.csv");
+        bool validAdminLogin = false;
+        foreach (string admin in listAdmins)
+        {
+            string[] adminInfo = admin.Split(",");
+            string adminUsername = adminInfo[0];
+            string adminPassword = adminInfo[1];
+            if(adminUsername == username && adminPassword == password)
+            {
+                validAdminLogin = true;
+            }
+            else
+            {
+               validAdminLogin = false;
+            }
+        }
+
+        if (validCustomerLogin)
+        {
+            return true;
+        }
+        else if (validAdminLogin)
         {
             return true;
         }
