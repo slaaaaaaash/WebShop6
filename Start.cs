@@ -40,23 +40,23 @@ namespace WebShop6
                         Environment.Exit(1);
                         break;
 
-                    case 1:
+                    case 1: //login för kunder
                         break;
 
-                    case 2:
+                    case 2: //registrera kund
                         break;
 
-                    case 3:
+                    case 3: //admin login
                         break;
 
-                    default: //när en ogiltigt sffra matas in
+                    default: //ogiltig siffra matas in
                         Console.WriteLine(" Invalid choice. Try again!");
                         Thread.Sleep(1000);
                         ShowStart();
                         break;
                 }
             }
-            else
+            else //ogiltig symbol matas in
             {
                 Console.WriteLine("Invalid input. Try again!");
                 Thread.Sleep(1000);
