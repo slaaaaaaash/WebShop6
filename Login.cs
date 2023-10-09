@@ -1,108 +1,71 @@
 ﻿using System.Runtime.CompilerServices;
-using System.Security.Cryptography;
 
 namespace WebShop6;
 public class Login
 {
-    public static bool LogInUser()
+    /*
+        public static string LogInUser()
+        {
+
+        }
+    */
+
+    public static Enum ValidateUsername(string username)
     {
-        string? UserName;
-        string? UserPassword;
-        bool validInput;
-        bool validPassword;
-
-        do
+        string user = username;
+        string[] customers = File.ReadAllLines("../../../Customers.csv");
+        string[] admins = File.ReadAllLines("../../../Admins.csv");
+        string usertype = string.Empty;
+        foreach (string customer in customers)
         {
-            validPassword = true;
-            do
+            string[] splitCustomer = customer.Split(",");
+            if (splitCustomer[0] == user)
             {
-                validInput = true;
-                Console.Clear();
-                Console.WriteLine("Welcome to the time-travelling Feline!");
-                Console.WriteLine();
-                Console.WriteLine("Please enter username and password to log in:");
-                Console.Write("Username: ");
-                UserName = Console.ReadLine();
-                Console.Write("Password: ");
-                UserPassword = Login.MaskedPass();
-                Console.WriteLine();
-                if (UserPassword.Length <= 0 || UserName.Length <= 0)
-                {
-                    Console.WriteLine("Please make sure you've actually entered both a username and a password.");
-                    Console.WriteLine("Press any key to try again");
-                    Console.ReadKey();
-                    Console.Clear();
-                    validInput = false;
-                }
-            } while (!validInput);
-
-            if (ValidateUser(UserName, UserPassword))
-            {
-                validPassword = true;
-            }
-            else
-            {
-                Console.WriteLine("Invalid username or password, press any key to try again");
-                Console.ReadKey();
-                Console.Clear();
-                validPassword = false;
-            }
-        } while (!validPassword);
-        return true;
-    }
-    private static bool ValidateUser(string username, string password)
-    {
-        string[] listCustomers= File.ReadAllLines("../../../Customers.csv");
-        bool validCustomerLogin = false;
-        foreach (string customer in listCustomers)
-        {
-            string[] customerInfo = customer.Split(",");
-            string customerUsername = customerInfo[0];
-            string customerPassword = customerInfo[1];
-            if(customerUsername == username && customerPassword == password)
-            {
-                validCustomerLogin = true;
-            }
-            else
-            {
-               validCustomerLogin = false;
+                usertype = "Customer";
             }
         }
 
-        string[] listAdmins = File.ReadAllLines("../../../Admins.csv");
-        bool validAdminLogin = false;
-        foreach (string admin in listAdmins)
+        foreach (string admin in admins)
         {
-            string[] adminInfo = admin.Split(",");
-            string adminUsername = adminInfo[0];
-            string adminPassword = adminInfo[1];
-            if(adminUsername == username && adminPassword == password)
+            string[] splitAdmin = admin.Split(",");
+            if (splitAdmin[0] == user)
             {
-                validAdminLogin = true;
-            }
-            else
-            {
-               validAdminLogin = false;
+                usertype = "Admin";
             }
         }
 
-        if (validCustomerLogin)
+        if (usertype == "Customer")
         {
-            return true;
+            return ValidationResults.Customer;
         }
-        else if (validAdminLogin)
+        else if (usertype == "Admin")
         {
-            return true;
+            return ValidationResults.Admin;
         }
         else
-            return false;
+        {
+            return ValidationResults.Username;
+        }
     }
 
-    private static string MaskedPass()
+    
+    /*
+    public static bool ValidatePassword(string username, string password)
+    {
+        switch (ImportUserLogin("../../../" + ValidateUsername(username) + ".csv")[username] == password)
+        {
+            case true:
+                return true;
+            case false:
+                return false;
+        }
+    }
+
+    */
+    public static string MaskedPass()
     {
         string pass = string.Empty;
         ConsoleKeyInfo key;
-
         do
         {
             key = Console.ReadKey(true);
@@ -123,7 +86,7 @@ public class Login
                     break;
                 }
             }
-        }while (key.Key != ConsoleKey.Enter) ;
+        } while (key.Key != ConsoleKey.Enter);
         return pass;
     }
 }
