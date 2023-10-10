@@ -3,6 +3,33 @@
 namespace WebShop6;
 public class Login
 {
+    public static void LoggingUser()
+    {
+        String UserName;
+        String Password;
+        Console.WriteLine("To return to previous meny, press ESC.");
+        Console.WriteLine();
+        Console.WriteLine("Otherwise, press any key to log in");
+        if(Console.ReadKey(true).Key != ConsoleKey.Escape)
+        {
+            UserName = AddUsername();
+            Password = AddPassword(UserName);
+            if (DetermineUserType(UserName).Equals(ValidationResults.Admin))
+            {
+                Admin admin = new Admin(UserName, Password);
+                Admin.AdminMenu(UserName);
+            }
+            else
+            {
+                Customer customer = new Customer(UserName, Password);
+                Customer.CustomerMenu(UserName);
+            }
+        }
+        else
+        {
+            Start.ShowStart();
+        }
+    }
     public static string AddUsername()
     {
         string UserName;
@@ -13,7 +40,9 @@ public class Login
             do
             {
                 validInput = true;
+                Console.Clear();
                 Console.WriteLine("Please enter username and password to log in:");
+                Console.WriteLine();
                 Console.Write("username: ");
                 UserName = Console.ReadLine();
                 if (UserName.Length <= 0)
@@ -39,7 +68,7 @@ public class Login
             return UserName;
         } while (!validUser);
     }
-   
+
     public static string AddPassword(string username)
     {
         string UserName = username;
@@ -53,6 +82,7 @@ public class Login
                 validInput = true;
                 Console.Clear();
                 Console.WriteLine("Please enter username and password to log in:");
+                Console.WriteLine();
                 Console.Write("username: ");
                 Console.WriteLine(UserName);
                 Console.Write("Password: ");
@@ -63,11 +93,13 @@ public class Login
                     Console.WriteLine();
                     Console.WriteLine("Please make sure you've actually entered a password.");
                     Console.WriteLine("Press any key to try again");
+                    Console.WriteLine();
                     Console.ReadKey();
                     Console.Clear();
                     validInput = false;
                 }
             } while (!validInput);
+
             if (!ValidatePassword(UserName, Password))
             {
                 Console.WriteLine();
@@ -148,7 +180,7 @@ public class Login
         {
             return false;
         }
-        
+
     }
 
     public static string MaskedPass()
@@ -178,10 +210,8 @@ public class Login
         } while (key.Key != ConsoleKey.Enter);
         return pass;
     }
-    
-    /* working function for finding out if user is an Admin or a Customer we might want this to happen here in at the login or somewhere else in the program.
-     
-    public static Enum ValidateUsername(string username)
+
+    public static Enum DetermineUserType(string username)
     {
         string user = username;
         string[] customers = File.ReadAllLines("../../../Customers.csv");
@@ -209,15 +239,10 @@ public class Login
         {
             return ValidationResults.Customer;
         }
-        else if (usertype == "Admin")
+        else
         {
             return ValidationResults.Admin;
         }
-        else
-        {
-            return ValidationResults.Username;
-        }
     }
 
-    */
 }
