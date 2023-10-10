@@ -2,6 +2,7 @@
 {
     public class Admin
     {
+
         public string AdminUsername;
         public string AdminPassword;
 
@@ -13,6 +14,7 @@
 
         public static void AdminMenu(string username)
         {
+
             Console.Clear();
             Console.WriteLine($"******************************************************************");
             Console.WriteLine($"****************************************************************** \n");
@@ -38,8 +40,57 @@
                         break;
 
                     case 2: //Manage Product Info
+                        Console.Clear();
+                        Console.WriteLine("1. Add Product");
+                        Console.WriteLine("2. Remove Product");
+                        Console.WriteLine("3. Back");
+
+                        bool addRemChoice = int.TryParse(Console.ReadLine(), out int addOrRemove);
+
+                        string newItemName, newItemPrice;
+
+                        if (addRemChoice)
+                        {
+                            switch (addOrRemove)
+                            {
+                                case 1: //add product
+                                    Console.Clear();
+                                    Console.WriteLine("Add a new product");
+                                    Console.WriteLine("Name of product:");
+
+                                    newItemName = Console.ReadLine();
+
+                                    Console.Clear();
+                                    Console.WriteLine("Price of product:");
+
+                                    newItemPrice = Console.ReadLine();
+
+                                    Console.Clear();
+
+                                    // string path = @"../../../Product.csv";
+
+
+
+                                    break;
+
+                                case 2: //remove product
+
+                                    break;
+
+                                case 3: //back
+
+                                    break;
+                            }
+                        }
+
+
+
+
+
+
                         break;
-                        
+
+
                     case 3: //Manage Orders
                         break;
 
@@ -56,7 +107,7 @@
                 Thread.Sleep(1000);
                 AdminMenu(username);
             }
-        
+
         }
 
     }

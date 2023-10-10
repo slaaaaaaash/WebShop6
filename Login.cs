@@ -1,34 +1,39 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.ComponentModel.Design;
+using System.Runtime.CompilerServices;
 
 namespace WebShop6;
 public class Login
 {
     public static void LoggingUser()
     {
-        String UserName;
-        String Password;
+        string? UserName = string.Empty;
+        string? Password = string.Empty;
         Console.Clear();
-        Console.WriteLine("To return to previous meny, press ESC.");
-        Console.WriteLine();
-        Console.WriteLine("Otherwise, press any key to log in");
-        if (Console.ReadKey(true).Key != ConsoleKey.Escape)
+        UserName = AddUsername();
+        if (UserName == null)
         {
-            UserName = AddUsername();
-            Password = AddPassword(UserName);
-            if (DetermineUserType(UserName).Equals(ValidationResults.Admin))
-            {
-                Admin admin = new Admin(UserName, Password);
-                Admin.AdminMenu(UserName);
-            }
-            else
-            {
-                Customer customer = new Customer(UserName, Password);
-                Customer.CustomerMenu(UserName);
-            }
+            return;
         }
         else
         {
-            Start.ShowStart();
+            Password = AddPassword(UserName);
+            if (Password == null)
+            {
+                return;
+            }
+            else
+            {
+                if (DetermineUserType(UserName).Equals(ValidationResults.Admin))
+                {
+                    Admin admin = new Admin(UserName, Password);
+                    Admin.AdminMenu(UserName);
+                }
+                else
+                {
+                    Customer customer = new Customer(UserName, Password);
+                    Customer.CustomerMenu(UserName);
+                }
+            }
         }
     }
     public static string AddUsername()
@@ -43,8 +48,13 @@ public class Login
             {
                 validInput = true;
                 Console.Clear();
-                Console.WriteLine("Please enter username and password to log in:");
+                Console.WriteLine("Press ESC to return to precious menu or press any other key to enter username:");
                 Console.WriteLine();
+                if (Console.ReadKey(true).Key == ConsoleKey.Escape)
+                {
+                    Start.ShowStart();
+                    return null;
+                }
                 Console.Write("Username: ");
                 UserName = Console.ReadLine();
                 if (UserName.Length <= 0)
@@ -82,11 +92,17 @@ public class Login
             {
                 validInput = true;
                 Console.Clear();
-                Console.WriteLine("Please enter username and password to log in:");
+                Console.WriteLine("Press ESC to return to precious menu or press any other key to enter password:");
                 Console.WriteLine();
                 Console.Write("Username: ");
                 Console.WriteLine(UserName);
+                if (Console.ReadKey(true).Key == ConsoleKey.Escape)
+                {
+                    Start.ShowStart();
+                    return null;
+                }
                 Console.Write("Password: ");
+                Console.WriteLine();
                 Password = Login.MaskedPass();
                 Console.WriteLine();
                 if (Password.Length <= 0)
