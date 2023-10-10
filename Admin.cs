@@ -27,8 +27,6 @@
             Console.WriteLine($"****************************************************************** \n");
 
             bool isSucceed = int.TryParse(Console.ReadLine(), out int choice);
-            string newItemName;
-            string newItemPrice;
 
             if (isSucceed)
             {
@@ -48,21 +46,30 @@
                         Console.WriteLine("3. Back");
 
                         bool addRemChoice = int.TryParse(Console.ReadLine(), out int addOrRemove);
+
+                        string newItemName, newItemPrice;
+
                         if (addRemChoice)
                         {
                             switch (addOrRemove)
                             {
                                 case 1: //add product
+                                    Console.Clear();
                                     Console.WriteLine("Add a new product");
                                     Console.WriteLine("Name of product:");
+
                                     newItemName = Console.ReadLine();
+
                                     Console.Clear();
                                     Console.WriteLine("Price of product:");
+
                                     newItemPrice = Console.ReadLine();
+
                                     Console.Clear();
 
+                                    // string path = @"../../../Product.csv";
 
-                                    // File.WriteAllLines("../../../Products.csv");
+
 
                                     break;
 
@@ -74,33 +81,33 @@
 
                                     break;
                             }
-}
+                        }
 
 
 
 
 
 
-break;
+                        break;
 
 
                     case 3: //Manage Orders
-    break;
+                        break;
 
-default: //ogiltig siffra matas in
-    Console.WriteLine(" Invalid choice. Try again!");
-    Thread.Sleep(1000);
-    AdminMenu(username);
-    break;
-}
+                    default: //ogiltig siffra matas in
+                        Console.WriteLine(" Invalid choice. Try again!");
+                        Thread.Sleep(1000);
+                        AdminMenu(username);
+                        break;
+                }
             }
             else //ogiltig symbol matas in
-{
-    Console.WriteLine("Invalid input. Try again!");
-    Thread.Sleep(1000);
-    AdminMenu(username);
-}
-        
+            {
+                Console.WriteLine("Invalid input. Try again!");
+                Thread.Sleep(1000);
+                AdminMenu(username);
+            }
+
         }
 
     }
