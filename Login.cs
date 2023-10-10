@@ -7,6 +7,7 @@ public class Login
     {
         String UserName;
         String Password;
+        Console.Clear();
         Console.WriteLine("To return to previous meny, press ESC.");
         Console.WriteLine();
         Console.WriteLine("Otherwise, press any key to log in");
@@ -43,7 +44,7 @@ public class Login
                 Console.Clear();
                 Console.WriteLine("Please enter username and password to log in:");
                 Console.WriteLine();
-                Console.Write("username: ");
+                Console.Write("Username: ");
                 UserName = Console.ReadLine();
                 if (UserName.Length <= 0)
                 {
