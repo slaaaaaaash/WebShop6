@@ -102,7 +102,6 @@ public class Login
                     return null;
                 }
                 Console.Write("Password: ");
-                Console.WriteLine();
                 Password = Login.MaskedPass();
                 Console.WriteLine();
                 if (Password.Length <= 0)

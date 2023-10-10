@@ -37,48 +37,28 @@
                         break;
 
                     case 1: //Manage Customer Info
-                        break;
+                        Customer.ShowCustomerList();
+                        Console.WriteLine("Write the username of the customer you want edit\n\n");
+                        string pickedUser = Customer.DisplayCustomerInfo();
+                        Console.WriteLine("\n\n");
+                        Console.WriteLine("1. Edit username");
+                        Console.WriteLine("2. Edit password");
+                        Console.WriteLine("3. Exit");
 
-                    case 2: //Manage Product Info
-                        Console.Clear();
-                        Console.WriteLine("1. Add Product");
-                        Console.WriteLine("2. Remove Product");
-                        Console.WriteLine("3. Back");
+                        bool manageCustomerChoice = int.TryParse(Console.ReadLine(), out int adminChoice);
 
-                        bool addRemChoice = int.TryParse(Console.ReadLine(), out int addOrRemove);
-
-                        string newItemName, newItemPrice;
-
-                        if (addRemChoice)
+                        if (manageCustomerChoice)
                         {
-                            switch (addOrRemove)
+                            switch (adminChoice)
                             {
-                                case 1: //add product
-                                    Console.Clear();
-                                    Console.WriteLine("Add a new product");
-                                    Console.WriteLine("Name of product:");
-
-                                    newItemName = Console.ReadLine();
-
-                                    Console.Clear();
-                                    Console.WriteLine("Price of product:");
-
-                                    newItemPrice = Console.ReadLine();
-
-                                    Console.Clear();
-
-                                    // string path = @"../../../Product.csv";
-
-
-
+                                case 1: //Edit username
+                                    Customer.EditUsername(pickedUser);
                                     break;
 
-                                case 2: //remove product
-
+                                case 2: //Edit password
                                     break;
 
-                                case 3: //back
-
+                                case 3: //Exit
                                     break;
                             }
                         }
