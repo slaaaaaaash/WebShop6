@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace WebShop6
 {
-    internal class Cart
+    public class ShoppingCart
     {
+        public static void Cart() //visa totala beställning
+        {
+            Console.Clear();
+            //loopa>hämta produktinfo
+
+            Console.WriteLine(" Total = "); //anropa en beräkningsfunktion av totalsumman
+        }
     }
 }
