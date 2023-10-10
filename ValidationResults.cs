@@ -4,7 +4,5 @@
     {
         Admin,
         Customer,
-        Username,
-        Password,
     }
 }
