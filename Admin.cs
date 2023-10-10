@@ -2,6 +2,7 @@
 {
     public class Admin
     {
+
         public string AdminUsername;
         public string AdminPassword;
 
@@ -13,6 +14,7 @@
 
         public static void AdminMenu(string username)
         {
+
             Console.Clear();
             Console.WriteLine($"******************************************************************");
             Console.WriteLine($"****************************************************************** \n");
@@ -25,6 +27,8 @@
             Console.WriteLine($"****************************************************************** \n");
 
             bool isSucceed = int.TryParse(Console.ReadLine(), out int choice);
+            string newItemName;
+            string newItemPrice;
 
             if (isSucceed)
             {
@@ -38,24 +42,64 @@
                         break;
 
                     case 2: //Manage Product Info
-                        break;
-                        
-                    case 3: //Manage Orders
-                        break;
+                        Console.Clear();
+                        Console.WriteLine("1. Add Product");
+                        Console.WriteLine("2. Remove Product");
+                        Console.WriteLine("3. Back");
 
-                    default: //ogiltig siffra matas in
-                        Console.WriteLine(" Invalid choice. Try again!");
-                        Thread.Sleep(1000);
-                        AdminMenu(username);
-                        break;
-                }
+                        bool addRemChoice = int.TryParse(Console.ReadLine(), out int addOrRemove);
+                        if (addRemChoice)
+                        {
+                            switch (addOrRemove)
+                            {
+                                case 1: //add product
+                                    Console.WriteLine("Add a new product");
+                                    Console.WriteLine("Name of product:");
+                                    newItemName = Console.ReadLine();
+                                    Console.Clear();
+                                    Console.WriteLine("Price of product:");
+                                    newItemPrice = Console.ReadLine();
+                                    Console.Clear();
+
+
+                                    // File.WriteAllLines("../../../Products.csv");
+
+                                    break;
+
+                                case 2: //remove product
+
+                                    break;
+
+                                case 3: //back
+
+                                    break;
+                            }
+}
+
+
+
+
+
+
+break;
+
+
+                    case 3: //Manage Orders
+    break;
+
+default: //ogiltig siffra matas in
+    Console.WriteLine(" Invalid choice. Try again!");
+    Thread.Sleep(1000);
+    AdminMenu(username);
+    break;
+}
             }
             else //ogiltig symbol matas in
-            {
-                Console.WriteLine("Invalid input. Try again!");
-                Thread.Sleep(1000);
-                AdminMenu(username);
-            }
+{
+    Console.WriteLine("Invalid input. Try again!");
+    Thread.Sleep(1000);
+    AdminMenu(username);
+}
         
         }
 
