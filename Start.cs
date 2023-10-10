@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,16 +6,14 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace WebShop6
-=======
-﻿namespace WebShop6
->>>>>>> main
+
 {
     public class Start
     {
         public static void ShowStart()
         {
             Console.Clear();
-<<<<<<< HEAD
+
             Console.WriteLine($"******************************************************************");
             Console.WriteLine($"****************************************************************** \n");
             Console.WriteLine(" WELCOME to: The Time-travelling Feline Shop\n");
@@ -72,9 +70,3 @@ namespace WebShop6
 
     }
 }
-=======
-            Console.WriteLine("This is startmeny");
-        }
-    }
-}
->>>>>>> main

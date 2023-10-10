@@ -15,13 +15,31 @@ public class newUser
         string newPass, newUser, tempPass;
         if (freshUser = true)
         {
-            string[] users = File.ReadAllLines("../../../data.txt");
-            
             Console.Write("Please enter Username: ");
             newUser = Console.ReadLine();
+            string[] usersLines = File.ReadAllLines("../../../newUser.csv");
+            for (int i = 0; i < usersLines.Length; i++)
+            {
+                string usertemp = usersLines[i];
+                string[] user = usertemp.Split(",");
+                bool userNameCheck = false;
+                do
+                    if (newUser == user[0])
+                    {
+                        Console.Write(user[0] + " already exists");
+                        Console.Write("Chose a diffrent username: ");
+                        newUser = Console.ReadLine();
+                        Console.WriteLine("-----------------");
+                    }
+                    else if (newUser != user[0])
+                    {
+                        userNameCheck = true;
+                    }
+                while (userNameCheck = false);
+            }
             Console.Write("Please enter a secure password: ");
             newPass = Console.ReadLine();
-            Console.Write("Plase enter your password one more time: ");
+            Console.Write("Please enter your password one more time: ");
             tempPass = Console.ReadLine();
             {
                 do
@@ -35,7 +53,6 @@ public class newUser
                         tempPass = Console.ReadLine();
                     }
                 while (PassCheck == false);
-
                 string[] userAndPass = { newUser + "," + newPass };
                 File.AppendAllLines("../../../newUser.csv", userAndPass);
             }
