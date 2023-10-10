@@ -1,15 +1,17 @@
 ﻿namespace WebShop6
 {
-    public class Products
+    public class Product
     {
 
         public string ProductName;
         public int ProductPrice;
+        public int ProductDate;
 
-        public Products(string name, int price)
+        public Product(string name, int price, int date)
         {
             ProductName = name;
             ProductPrice = price;
+            ProductDate = date;
         }
     }
 }
