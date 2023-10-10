@@ -14,6 +14,7 @@
         {
             Console.Clear();
             Console.WriteLine(username + "! Welcome to the Customer Menu!");
+            Console.WriteLine("Please enter the number corresponding to your choice");
             Console.WriteLine();
             Console.WriteLine("1. List of Products");
             Console.WriteLine("Choice 2");

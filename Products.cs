@@ -3,14 +3,12 @@
     public class Products
     {
         public string ProductName;
-        public string ProductPrice;
+        public int ProductPrice;
 
-        public Products(string name, string price)
+        public Products(string name, int price)
         {
             ProductName = name;
             ProductPrice = price;
         }
-
-
     }
 }
