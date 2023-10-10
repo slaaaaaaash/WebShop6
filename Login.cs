@@ -11,7 +11,7 @@ public class Login
         Console.WriteLine("To return to previous meny, press ESC.");
         Console.WriteLine();
         Console.WriteLine("Otherwise, press any key to log in");
-        if(Console.ReadKey(true).Key != ConsoleKey.Escape)
+        if (Console.ReadKey(true).Key != ConsoleKey.Escape)
         {
             UserName = AddUsername();
             Password = AddPassword(UserName);
@@ -33,11 +33,12 @@ public class Login
     }
     public static string AddUsername()
     {
-        string UserName;
+        string? UserName;
         bool validUser;
+        bool validInput;
         do
         {
-            bool validInput;
+            validUser = true;
             do
             {
                 validInput = true;
@@ -62,12 +63,10 @@ public class Login
                 Console.WriteLine("Username does not exist, press any key to try again");
                 Console.ReadKey();
                 Console.Clear();
-                AddUsername();
+                validUser = false;
             }
-            else
-                validUser = true;
-            return UserName;
         } while (!validUser);
+        return UserName;
     }
 
     public static string AddPassword(string username)
@@ -75,16 +74,17 @@ public class Login
         string UserName = username;
         string Password;
         bool validPass;
+        bool validInput;
         do
         {
-            bool validInput;
+            validPass = true;
             do
             {
                 validInput = true;
                 Console.Clear();
                 Console.WriteLine("Please enter username and password to log in:");
                 Console.WriteLine();
-                Console.Write("username: ");
+                Console.Write("Username: ");
                 Console.WriteLine(UserName);
                 Console.Write("Password: ");
                 Password = Login.MaskedPass();
@@ -107,12 +107,10 @@ public class Login
                 Console.WriteLine("You've entered the incorrect password, press any key to try again.");
                 Console.ReadKey();
                 Console.Clear();
-                AddPassword(UserName);
+                validPass = false;
             }
-            else
-                validPass = true;
-            return Password;
         } while (!validPass);
+        return Password;
     }
     public static bool ValidateUsername(string username)
     {
