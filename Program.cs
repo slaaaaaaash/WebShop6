@@ -1,3 +1,1 @@
-﻿using WebShop6;
-
-Login.LoggingUser();
+﻿Console.WriteLine("Welcome to the Time-travelling Feline");
