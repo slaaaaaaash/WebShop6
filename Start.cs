@@ -16,7 +16,6 @@ namespace WebShop6
             Console.WriteLine(" WELCOME to: The Time-travelling Feline Shop\n");
             Console.WriteLine(" 1. Login ");
             Console.WriteLine(" 2. Register\n");
-            Console.WriteLine(" 3. Admin\n\n");
             Console.WriteLine(" 0. Exit\n");
             Console.WriteLine($"******************************************************************");
             Console.WriteLine($"****************************************************************** \n");
@@ -40,13 +39,11 @@ namespace WebShop6
                         Environment.Exit(1);
                         break;
 
-                    case 1: //login för kunder
+                    case 1: //login 
+                        Login.LoggingUser();
                         break;
 
                     case 2: //registrera kund
-                        break;
-
-                    case 3: //admin login
                         break;
 
                     default: //ogiltig siffra matas in
