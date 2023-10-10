@@ -15,48 +15,62 @@ public class newUser
         string newPass, newUser, tempPass;
         if (freshUser = true)
         {
-            Console.Write("Please enter Username: ");
-            newUser = Console.ReadLine();
+                Console.Write("Please enter Username: ");
+                newUser = Console.ReadLine();
+                if (newUser.Length <= 0)
+                    do
+                    {
+                        Console.Write("Try again: ");
+                        newUser = Console.ReadLine();
+                    }
+                    while (newUser.Length <= 0);
             string[] usersLines = File.ReadAllLines("../../../newUser.csv");
             for (int i = 0; i < usersLines.Length; i++)
             {
                 string usertemp = usersLines[i];
                 string[] user = usertemp.Split(",");
-                bool userNameCheck = false;
                 do
+                {
                     if (newUser == user[0])
                     {
-                        Console.Write(user[0] + " already exists");
+                        Console.WriteLine(user[0] + " already exists");
                         Console.Write("Chose a diffrent username: ");
                         newUser = Console.ReadLine();
                         Console.WriteLine("-----------------");
                     }
-                    else if (newUser != user[0])
-                    {
-                        userNameCheck = true;
-                    }
-                while (userNameCheck = false);
+                }
+                while (newUser == user[0]);
             }
             Console.Write("Please enter a secure password: ");
-            newPass = Console.ReadLine();
+            newPass = Login.MaskedPass();
+            Console.WriteLine("");
             Console.Write("Please enter your password one more time: ");
-            tempPass = Console.ReadLine();
+            tempPass = Login.MaskedPass();
             {
                 do
+                {
                     if (newPass == tempPass)
                     {
                         PassCheck = true;
                     }
                     else if (newPass != tempPass)
                     {
+                        Console.WriteLine("");
                         Console.Write("WRONG! Please reenter your password: ");
-                        tempPass = Console.ReadLine();
+                        tempPass = Login.MaskedPass();
                     }
-                while (PassCheck == false);
+
+                } while (PassCheck == false);
                 string[] userAndPass = { newUser + "," + newPass };
                 File.AppendAllLines("../../../newUser.csv", userAndPass);
             }
-
         }
     }
 }
+
+                    
+                
+           
+
+
+    
