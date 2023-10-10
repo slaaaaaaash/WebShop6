@@ -15,10 +15,31 @@
             Console.Clear();
             Console.WriteLine(username + "! Welcome to the Customer Menu!");
             Console.WriteLine();
-            Console.WriteLine("Choice 1");
+            Console.WriteLine("1. List of Products");
             Console.WriteLine("Choice 2");
             Console.WriteLine("Choice 3");
             Console.WriteLine("Choice 4");
+
+            bool customerChoice = int.TryParse(Console.ReadLine(), out int choice);
+
+            if (customerChoice)
+            {
+                switch (choice)
+                {
+                    case 0:
+                        Console.WriteLine("test0");
+                        break;
+                    case 1:
+                        Console.WriteLine("test1");
+                        break;
+                    case 2:
+                        Console.WriteLine("test2");
+                        break;
+                    case 3:
+                        Console.WriteLine();
+                        break;
+                }
+            }
         }
     }
 }
