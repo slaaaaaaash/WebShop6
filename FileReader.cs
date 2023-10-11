@@ -8,6 +8,7 @@ namespace WebShop6
 {
     public class FileReader
     {
+        public static List<FileReader> products = new List<FileReader>();
         public string ProductName { get; set; }
         public int ProductPrice { get; set; }
 
@@ -15,7 +16,6 @@ namespace WebShop6
         {
             string filePath = "../../../Products.csv";
             StreamReader reader = new StreamReader(filePath);
-            List<FileReader> products = new List<FileReader>();
 
             while (!reader.EndOfStream)
             {
@@ -34,16 +34,5 @@ namespace WebShop6
             }
         }
     }
-    //public FileReader(string filePath)
-    //{
-    //    Reader(filePath);
-    //}
-
-    //public List<Product> Reader(string filePath)
-    //{
-    //    StreamReader reader = new StreamReader(filePath);
-    //    List<Product> products = new List<Product>();
-    //    return products;
-    //}
-
+ 
 }
