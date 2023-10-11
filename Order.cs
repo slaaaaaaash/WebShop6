@@ -11,13 +11,13 @@ public class Product
 
 {
 
-	public int Id { get; }
+	public int product { get; }
 	public string Name { get; }
 	public double Price { get; }
 
-	public Product(int id, string name, double price)
+	public Product(int product, string name, int price)
 	{
-		Id = id;
+		product = product;
 		Name = name;
 		Price = price;
 	}
@@ -39,10 +39,31 @@ public class Product
 			products.Add(new Product(2, "Name", 50));
 			products.Add(new Product(3, "Catears", 100));
 
-			while (true) ;
+		
+
+			{
+
+				Console.WriteLine("1, View Order History");
+				Console.WriteLine("2, Order");
+				Console.WriteLine("3, Product List");
+
+				int choice;
+
+				switch
+
+				{
+					
 
 
+
+
+					}
+				}
+			}
 		}
 	}
-}
+
+
+
+
 
