@@ -80,46 +80,63 @@ namespace WebShop6
             Console.Clear();
             Console.WriteLine("Customer List");
             Console.WriteLine();
-            Console.WriteLine(String.Format("{0,-15} {1,20}\n", "Username", "Password"));
+            Console.WriteLine("Username\n\n");
             foreach (string customer in customers)
             {
                 string[] splitCustomer = customer.Split(",");
-                Console.WriteLine(String.Format("{0,-15} {1,20:N0}", splitCustomer[0], splitCustomer[1]));
+                Console.WriteLine(splitCustomer[0]);
             }
             Console.WriteLine("\n\n");
         }
 
-        public static string DisplayCustomerInfo()
+        public static string ValidateUsername()
         {
             string[] customers = File.ReadAllLines("../../../Customers.csv");
-            bool validInput = false;
+            bool validInput;
             string? user;
             do
             {
-                user = Console.ReadLine();
+                validInput = false;
                 Console.Clear();
-                Console.WriteLine("Customer Info for : " + user);
-                Console.WriteLine();
-                Console.WriteLine(String.Format("{0,-15} {1,20}\n", "Username", "Password"));
+                ShowCustomerList();
+                Console.WriteLine("Write the username of the customer you want edit\n\n");
+                user = Console.ReadLine();
                 foreach (string customer in customers)
                 {
-                    string[] splitCustomer = customer.Split(",");
-                    if (splitCustomer[0] == user)
+                    string[] customerSplit = customer.Split(",");
+                    if (customerSplit[0] == user)
                     {
-                        Console.WriteLine(String.Format("{0,-15} {1,20:N0}", splitCustomer[0], splitCustomer[1]));
                         validInput = true;
                     }
                 }
                 if (!validInput)
                 {
-                    Console.WriteLine("\n\n");
-                    Console.WriteLine("Invalid username, try again");
-                    Console.ReadKey();
-
+                    Console.WriteLine("User does not exist, try again");
+                    Thread.Sleep(1000);
                 }
-                Console.WriteLine("\n\n");
             } while (!validInput);
             return user;
+        }
+
+        public static void DisplayCustomerInfo(string user)
+        {
+            string[] customers = File.ReadAllLines("../../../Customers.csv");
+            Console.Clear();
+            Console.WriteLine("Customer Info for : " + user);
+            Console.WriteLine();
+            Console.WriteLine(String.Format("{0,-15} {1,20}\n", "Username", "Passwod"));
+            foreach (string customer in customers)
+            {
+                string[] splitCustomer = customer.Split(",");
+                if (splitCustomer[0] == user)
+                {
+                    Console.WriteLine(String.Format("{0,-15} {1,20:N0}", splitCustomer[0], splitCustomer[1]));
+                }
+            }
+            Console.WriteLine("\n\n");
+            Console.WriteLine("1. Edit username");
+            Console.WriteLine("2. Edit password");
+            Console.WriteLine("0. Exit");
         }
 
         public static void EditUsername(string username)
@@ -127,12 +144,13 @@ namespace WebShop6
             string[] customers = File.ReadAllLines("../../../Customers.csv");
             List<string> customerList = new List<string>();
             bool uniqueUser;
+            string? uniqueName = string.Empty;
             do
             {
                 uniqueUser = true;
                 Console.Clear();
                 Console.WriteLine("Enter new username");
-                string newUsername = Console.ReadLine();
+                string? newUsername = Console.ReadLine();
 
                 foreach (string customer in customers)
                 {
@@ -141,19 +159,29 @@ namespace WebShop6
                     {
                         uniqueUser = false;
                     }
-                    else if (customerSplit[0] != newUsername && customerSplit[0] == username)
-                    {
-                        customerSplit[0] = newUsername;
-                    }
-                    customerList.Add(customer);
                 }
-                if(!uniqueUser)
+                if (!uniqueUser)
                 {
                     Console.WriteLine("Username already exists.");
-                    Console.ReadKey();
+                    Thread.Sleep(1000);
+                }
+                else
+                {
+                    uniqueName = newUsername;
                 }
             } while (!uniqueUser);
+
+            foreach (string customer in customers)
+            {
+                string[] customerSplit = customer.Split(",");
+                if (customerSplit[0] == username)
+                {
+                    customerSplit[0] = uniqueName;
+                }
+                customerList.Add(customerSplit[0] + "," + customerSplit[1]);
+            }
             File.WriteAllLines("../../../Customers.csv", customerList);
+
         }
     }
 }
