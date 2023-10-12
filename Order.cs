@@ -47,9 +47,31 @@ public class Product
 				Console.WriteLine("2, Order");
 				Console.WriteLine("3, Product List");
 
-				int choice;
+				static string GetChoice(int choice) {
 
-				switch
+					string choose;
+
+					switch (choice)
+					{
+						case 1:
+							choose = "View Order History";
+							break;
+                        case 2:
+							choose = "Order";
+                            break;
+                        case 3:
+                            choose = "Product List";
+                            break;
+						default:
+							choose = " Invalid Choice";
+							break;
+
+
+                    }
+					return choose;
+				}
+
+				
 
 				{
 					
