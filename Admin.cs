@@ -14,7 +14,6 @@
 
         public static void AdminMenu(string username)
         {
-
             Console.Clear();
             Console.WriteLine($"******************************************************************");
             Console.WriteLine($"****************************************************************** \n");
@@ -37,57 +36,7 @@
                         break;
 
                     case 1: //Manage Customer Info
-                        break;
-
-                    case 2: //Manage Product Info
-                        Console.Clear();
-                        Console.WriteLine("1. Add Product");
-                        Console.WriteLine("2. Remove Product");
-                        Console.WriteLine("3. Back");
-
-                        bool addRemChoice = int.TryParse(Console.ReadLine(), out int addOrRemove);
-
-                        string newItemName, newItemPrice;
-
-                        if (addRemChoice)
-                        {
-                            switch (addOrRemove)
-                            {
-                                case 1: //add product
-                                    Console.Clear();
-                                    Console.WriteLine("Add a new product");
-                                    Console.WriteLine("Name of product:");
-
-                                    newItemName = Console.ReadLine();
-
-                                    Console.Clear();
-                                    Console.WriteLine("Price of product:");
-
-                                    newItemPrice = Console.ReadLine();
-
-                                    Console.Clear();
-
-                                    // string path = @"../../../Product.csv";
-
-
-
-                                    break;
-
-                                case 2: //remove product
-
-                                    break;
-
-                                case 3: //back
-
-                                    break;
-                            }
-                        }
-
-
-
-
-
-
+                        ManageCustomer(username);
                         break;
 
 
@@ -110,5 +59,64 @@
 
         }
 
+        public static void ManageCustomer(string username)
+        {
+            Customer.ShowCustomerList();
+            Console.WriteLine("1. Edit customer info");
+            Console.WriteLine("0. Exit");
+            bool returnToAdminMenu = int.TryParse(Console.ReadLine(), out int adminChoice1);
+            if (returnToAdminMenu)
+                switch (adminChoice1)
+                {
+                    case 1: //Edit Customer Info
+                        string pickedUser = Customer.ValidateUsername();
+                        EditCustomerInfo(username, pickedUser);
+                        break;
+                    case 0: //return to admin Menu
+                        AdminMenu(username);
+                        break;
+                    default: // if invalid input
+                        Console.WriteLine("Invalid input! Try again!");
+                        Thread.Sleep(1000);
+                        ManageCustomer(username);
+                        break;
+                }
+            else // if invalid input
+            {
+                Console.WriteLine("Invalid input! Try again!");
+                Thread.Sleep(1000);
+                ManageCustomer(username);
+            }
+
+
+        }
+        public static void EditCustomerInfo(string username, string customer)
+        {
+            Customer.DisplayCustomerInfo(customer);
+            bool manageCustomerChoice = int.TryParse(Console.ReadLine(), out int adminChoice);
+
+            if (manageCustomerChoice)
+            {
+                switch (adminChoice)
+                {
+                    case 1: //Edit username
+                        string newUsername = Customer.EditUsername(customer);
+                        Thread.Sleep(1000);
+                        EditCustomerInfo(username, newUsername);
+                        break;
+
+                    case 2: //Edit password
+                        Customer.EditPassword(customer);
+                        Thread.Sleep(1000);
+                        EditCustomerInfo(username, customer);
+                        break;
+
+                    case 0: //Exit
+                        ManageCustomer(username);
+                        break;
+                }
+            }
+
+        }
     }
 }
