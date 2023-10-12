@@ -100,12 +100,15 @@
                 switch (adminChoice)
                 {
                     case 1: //Edit username
-                        Customer.EditUsername(customer);
+                        string newUsername = Customer.EditUsername(customer);
                         Thread.Sleep(1000);
-                        EditCustomerInfo(username, customer);
+                        EditCustomerInfo(username, newUsername);
                         break;
 
                     case 2: //Edit password
+                        Customer.EditPassword(customer);
+                        Thread.Sleep(1000);
+                        EditCustomerInfo(username, customer);
                         break;
 
                     case 0: //Exit

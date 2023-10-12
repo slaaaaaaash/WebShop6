@@ -49,7 +49,6 @@ namespace WebShop6
                         {
                             Console.WriteLine(product);
                         }
-
                         break;
 
                     case 2: //Order History
@@ -72,7 +71,6 @@ namespace WebShop6
                 CustomerMenu(username);
             }
         }
-
 
         public static void ShowCustomerList()
         {
@@ -139,18 +137,19 @@ namespace WebShop6
             Console.WriteLine("0. Exit");
         }
 
-        public static void EditUsername(string username)
+        public static string EditUsername(string username)
         {
             string[] customers = File.ReadAllLines("../../../Customers.csv");
             List<string> customerList = new List<string>();
             bool uniqueUser;
             string? uniqueName = string.Empty;
+            string? newUsername = string.Empty;
             do
             {
                 uniqueUser = true;
                 Console.Clear();
                 Console.WriteLine("Enter new username");
-                string? newUsername = Console.ReadLine();
+                newUsername = Console.ReadLine();
 
                 foreach (string customer in customers)
                 {
@@ -181,7 +180,26 @@ namespace WebShop6
                 customerList.Add(customerSplit[0] + "," + customerSplit[1]);
             }
             File.WriteAllLines("../../../Customers.csv", customerList);
+            return newUsername;
+        }
+        public static void EditPassword(string username)
+        {
+            string[] customers = File.ReadAllLines("../../../Customers.csv");
+            List<string> customerList = new List<string>();
+            Console.Clear();
+            Console.WriteLine("Enter new password");
+            string? newPassword = Console.ReadLine();
 
+            foreach (string customer in customers)
+            {
+                string[] customerSplit = customer.Split(",");
+                if (customerSplit[0] == username)
+                {
+                    customerSplit[1] = newPassword;
+                }
+                customerList.Add(customerSplit[0] + "," + customerSplit[1]);
+            }
+            File.WriteAllLines("../../../Customers.csv", customerList);
         }
     }
 }
