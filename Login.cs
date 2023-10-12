@@ -48,32 +48,43 @@ public class Login
             {
                 validInput = true;
                 Console.Clear();
-                Console.WriteLine("Press ESC to return to precious menu or press any other key to enter username:");
-                Console.WriteLine();
-                if (Console.ReadKey(true).Key == ConsoleKey.Escape)
-                {
-                    Start.ShowStart();
-                    return null;
-                }
+                Console.WriteLine("Please enter your username and password\n");
                 Console.Write("Username: ");
                 UserName = Console.ReadLine();
                 if (UserName.Length <= 0)
                 {
                     Console.WriteLine();
                     Console.WriteLine("Please make sure you've actually entered a username.");
-                    Console.WriteLine("Press any key to try again");
-                    Console.ReadKey();
-                    Console.Clear();
-                    validInput = false;
+                    Console.WriteLine("Press any key to try again or ESC to exit");
+                    if (Console.ReadKey(true).Key == ConsoleKey.Escape)
+                    {
+                        Console.Clear();
+                        Start.ShowStart();
+                        return null;
+                    }
+                    else
+                    {
+                        Console.Clear();
+                        validInput = false;
+                    }
                 }
             } while (!validInput);
             if (!ValidateUsername(UserName))
             {
                 Console.WriteLine();
-                Console.WriteLine("Username does not exist, press any key to try again");
-                Console.ReadKey();
-                Console.Clear();
-                validUser = false;
+                Console.WriteLine("Username does not exist");
+                Console.WriteLine("Press any key to try again or ESC to exit");
+                if (Console.ReadKey(true).Key == ConsoleKey.Escape)
+                {
+                    Console.Clear();
+                    Start.ShowStart();
+                    return null;
+                }
+                else
+                {
+                    Console.Clear();
+                    validUser = false;
+                }
             }
         } while (!validUser);
         return UserName;
@@ -92,15 +103,9 @@ public class Login
             {
                 validInput = true;
                 Console.Clear();
-                Console.WriteLine("Press ESC to return to precious menu or press any other key to enter password:");
-                Console.WriteLine();
+                Console.WriteLine("Please enter your username and password\n");
                 Console.Write("Username: ");
                 Console.WriteLine(UserName);
-                if (Console.ReadKey(true).Key == ConsoleKey.Escape)
-                {
-                    Start.ShowStart();
-                    return null;
-                }
                 Console.Write("Password: ");
                 Password = Login.MaskedPass();
                 Console.WriteLine();
@@ -108,11 +113,18 @@ public class Login
                 {
                     Console.WriteLine();
                     Console.WriteLine("Please make sure you've actually entered a password.");
-                    Console.WriteLine("Press any key to try again");
-                    Console.WriteLine();
-                    Console.ReadKey();
-                    Console.Clear();
-                    validInput = false;
+                    Console.WriteLine("Press any key to try again or ESC to exit");
+                    if (Console.ReadKey(true).Key == ConsoleKey.Escape)
+                    {
+                        Console.Clear();
+                        Start.ShowStart();
+                        return null;
+                    }
+                    else
+                    {
+                        Console.Clear();
+                        validInput = false;
+                    }
                 }
             } while (!validInput);
 
@@ -120,9 +132,18 @@ public class Login
             {
                 Console.WriteLine();
                 Console.WriteLine("You've entered the incorrect password, press any key to try again.");
-                Console.ReadKey();
-                Console.Clear();
-                validPass = false;
+                Console.WriteLine("Press any key to try again or ESC to exit");
+                if (Console.ReadKey(true).Key == ConsoleKey.Escape)
+                {
+                    Console.Clear();
+                    Start.ShowStart();
+                    return null;
+                }
+                else
+                {
+                    Console.Clear();
+                    validPass = false;
+                }
             }
         } while (!validPass);
         return Password;
