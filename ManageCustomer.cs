@@ -4,7 +4,7 @@ namespace WebShop6;
 
 public class ManageCustomer
 {
-    public static void Menu()
+    public static void Menu() // The menu for managing a customer
     {
         ShowCustomerList();
         Console.WriteLine("1. Edit customer info");
@@ -33,7 +33,7 @@ public class ManageCustomer
             Menu();
         }
     }
-    public static void EditCustomerMenu(string customer)
+    public static void EditCustomerMenu(string customer) // Sub-menu for editing a selected customers info.
     {
         DisplayCustomerInfo(customer);
         bool manageCustomerChoice = int.TryParse(Console.ReadLine(), out int adminChoice);
@@ -72,7 +72,7 @@ public class ManageCustomer
             Menu();
         }
     }
-    public static void ShowCustomerList()
+    public static void ShowCustomerList() // Displays a list with all customers and makes sure there are no admins in the list.
     {
         string[] users = File.ReadAllLines("users.csv");
         Console.Clear();
@@ -87,7 +87,7 @@ public class ManageCustomer
         Console.WriteLine("\n\n");
     }
 
-    public static string ValidateUsername()
+    public static string ValidateUsername() // Checks so that the new username does not already exist
     {
         string[] users = File.ReadAllLines("users.csv");
         bool validInput;
@@ -115,7 +115,7 @@ public class ManageCustomer
         return user;
     }
 
-    public static void DisplayCustomerInfo(string user)
+    public static void DisplayCustomerInfo(string user) // Displays the username and password of the selected customer
     {
         string[] users = File.ReadAllLines("users.csv");
         Console.Clear();
@@ -136,7 +136,7 @@ public class ManageCustomer
         Console.WriteLine("0. Exit");
     }
 
-    public static string EditUsername(string username)
+    public static string EditUsername(string username) // Allows the user to enter a new username for the selected customer and prints it to the users.csv-file.
     {
         string[] users = File.ReadAllLines("users.csv");
         List<string> userList = new List<string>();
@@ -181,7 +181,7 @@ public class ManageCustomer
         File.WriteAllLines("users.csv", userList);
         return newUsername;
     }
-    public static void EditPassword(string username)
+    public static void EditPassword(string username) // Allows the user to enter a new password for the customer and prints it to te users.csv-file.
     {
         string[] users = File.ReadAllLines("users.csv");
         List<string> userList = new List<string>();
