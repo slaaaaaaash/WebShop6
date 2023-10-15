@@ -57,7 +57,7 @@ do
         }
     } while (user == null);
 
-    if (user is Customer c)
+    if (user is Customer customer)
     {
         bool customerReturn;
         do
@@ -66,7 +66,7 @@ do
             Console.Clear();
             Console.WriteLine($"******************************************************************");
             Console.WriteLine($"****************************************************************** \n");
-            Console.WriteLine(c.Username.ToUpper() + "! WELCOME to: The Time-travelling Feline Shop\n");
+            Console.WriteLine(customer.Username.ToUpper() + "! WELCOME to: The Time-travelling Feline Shop\n");
             Console.WriteLine(" 1. Product List ");
             Console.WriteLine(" 2. Order History\n");
             Console.WriteLine(" 3. View Shopping Cart\n");
@@ -94,10 +94,10 @@ do
                             Product product = new Product(info);
                             listProducts.Add(product);
                         }
-                        for (int i = 0; i < listProducts.Count; i++)
+                        for (int i = 1; i <= listProducts.Count; i++)
                         {
                             Product line = listProducts[i];
-                            Console.WriteLine(line.Name + " [" + (i + 1) + "]");
+                            Console.WriteLine(line.Name + " [" + (i) + "]");
                             Console.WriteLine("Price: " + line.Price + "kr");
                             Console.WriteLine("Description: " + line.Description + "\n");
                         }
@@ -133,9 +133,57 @@ do
     }
     else if (user is Admin a)
     {
-        Console.Clear();
-        Console.WriteLine("\nCongrats you've succesfully logged in as an admin");
-        Console.WriteLine(a.Username);
+        bool adminReturn;
+        do
+        {
+            adminReturn = true;
+            Console.Clear();
+            Console.WriteLine($"******************************************************************");
+            Console.WriteLine($"****************************************************************** \n");
+            Console.WriteLine(a.Username.ToUpper() + "! WELCOME to: The Time-travelling Feline Shop\n");
+            Console.WriteLine(" 1. Manage Customer Info ");
+            Console.WriteLine(" 2. Manage Products\n");
+            Console.WriteLine(" 3. Manage Orders\n");
+            Console.WriteLine(" 0. Log out\n");
+            Console.WriteLine($"******************************************************************");
+            Console.WriteLine($"****************************************************************** \n");
+
+            bool isSucceed = int.TryParse(Console.ReadLine(), out int choice);
+
+            if (isSucceed)
+            {
+                switch (choice)
+                {
+                    case 0:
+                        logOut = true;
+                        break;
+
+                    case 1: //Manage Customer Info
+                        
+                        break;
+
+                    case 2: // Manage Products 
+                        adminReturn = false;
+                        break;
+
+                    case 3: // Manage Orders
+                        adminReturn = false;
+                        break;
+
+                    default: //invalid input
+                        Console.WriteLine(" Invalid choice. Try again!");
+                        adminReturn = false;
+                        Thread.Sleep(1000);
+                        break;
+                }
+            }
+            else //invalid input
+            {
+                Console.WriteLine("Invalid input. Try again!");
+                adminReturn = false;
+                Thread.Sleep(1000);
+            }
+        } while (!adminReturn);
     }
 
 } while (logOut);
