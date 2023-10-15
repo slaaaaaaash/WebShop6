@@ -159,7 +159,8 @@ do
                         break;
 
                     case 1: //Manage Customer Info
-                        
+                        ManageCustomer.Menu();
+                        adminReturn = false;
                         break;
 
                     case 2: // Manage Products 
