@@ -2,7 +2,7 @@
 
 IUser? user = null;
 
-do
+do 
 {
     Console.Clear();
     Console.WriteLine($"******************************************************************");
@@ -37,19 +37,33 @@ do
                 user = LoginMenu.Login();
                 break;
 
-            case 2: //registrera kund
+            case 2: // register new customer 
                 LoginMenu.Register();
                 break;
 
-            default: //ogiltig siffra matas in
+            default: //invalid input
                 Console.WriteLine(" Invalid choice. Try again!");
                 Thread.Sleep(1000);
                 break;
         }
     }
-    else //ogiltig symbol matas in
+    else //invalid input
     {
         Console.WriteLine("Invalid input. Try again!");
         Thread.Sleep(1000);
     }
 } while (user == null);
+
+if (user is Customer c)
+{
+    Console.Clear();
+    Console.WriteLine("\nCongrats you've succesfully logged in as a customer");
+    Console.WriteLine(c.Username);
+    Console.WriteLine(c.Cart);
+}
+else if (user is Admin a)
+{
+    Console.Clear();
+    Console.WriteLine("\nCongrats you've succesfully logged in as an admin");
+    Console.WriteLine(a.Username);
+}
