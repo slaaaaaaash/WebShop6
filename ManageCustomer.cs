@@ -6,7 +6,7 @@ public class ManageCustomer
 {
     public static void Menu() // The menu for managing a customer
     {
-        ShowCustomerList();
+        ShowCustomerList();// shows the customer-list
         Console.WriteLine("1. Edit customer info");
         Console.WriteLine("0. Exit");
         bool returnToAdminMenu = int.TryParse(Console.ReadLine(), out int adminChoice1);
@@ -14,12 +14,11 @@ public class ManageCustomer
             switch (adminChoice1)
             {
                 case 1: //Edit Customer Info
-                    string pickedUser = ValidateUsername();
-                    EditCustomerMenu(pickedUser);
+                    string pickedUser = ValidateUsername(); // gets the username of the customer to be edited
+                    EditCustomerMenu(pickedUser); // Takes the customer username and allows for editing.
                     break;
                 case 0: //return to admin Menu
                     return;
-                    break;
                 default: // if invalid input
                     Console.WriteLine("invalid input! try again!");
                     Thread.Sleep(1000);
