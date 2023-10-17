@@ -7,13 +7,6 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="bin\Debug\net7.0\Carts\" />
-    <Folder Include="Carts\" />
-  </ItemGroup>
 
-  <ItemGroup>
-    <None Include="bin\debug\net7.0\products.csv" />
-  </ItemGroup>
 
 </Project>

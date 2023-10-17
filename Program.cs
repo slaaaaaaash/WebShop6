@@ -1,5 +1,7 @@
 ﻿using WebShop6;
 
+CreateNeededFiles();
+
 IUser? user = null;
 bool logOut;
 do
@@ -94,10 +96,10 @@ do
                             Product product = new Product(info);
                             listProducts.Add(product);
                         }
-                        for (int i = 1; i <= listProducts.Count; i++)
+                        for (int i = 0; i < listProducts.Count; i++)
                         {
                             Product line = listProducts[i];
-                            Console.WriteLine(line.Name + " [" + (i) + "]");
+                            Console.WriteLine(line.Name + " [" + (i+1) + "]");
                             Console.WriteLine("Price: " + line.Price + "kr");
                             Console.WriteLine("Description: " + line.Description + "\n");
                         }
@@ -188,3 +190,17 @@ do
     }
 
 } while (logOut);
+
+
+void CreateNeededFiles()
+{
+    if (!File.Exists("users.csv"))
+    {
+        File.Create("users.csv").Close();
+    }
+    Directory.CreateDirectory("Carts");
+    if (!File.Exists("products.csv"))
+    {
+        File.Create("products.csv").Close();
+    }
+}
