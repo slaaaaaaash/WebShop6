@@ -82,10 +82,10 @@ public class Products
 				}
 
 
-				//static int choose()
+				static int choose()
 				{
 
-					//int choose;
+					int choose;
 
 
 
