@@ -6,12 +6,11 @@ using System.Collections.Generic;
 namespace WebShop6;
 
 
-
 public class Products 
 
 {
 
-	public int Productss { get; }
+	public int Product{ get; }
 	public string Name { get; }
 	public double Price { get; }
 
@@ -24,71 +23,87 @@ public class Products
 
 
 
-	public class Order
-	{
-		static List<Products> Products = new List<Products>();
-		static List<Order> orders = new List<Order>();
-		static int orderIdcounter = 1;
-
-
-		static void Main()
+		public class Order
 		{
-			// lägga in produkter
 
-			Products.Add(new Products(1, "Test", 10));
-			Products.Add(new Products(2, "Name", 50));
-			Products.Add(new Products(3, "Catears", 100));
-
+			static List<Products> products = new List<Products>();
+			static List<Order> orders = new List<Order>();
+			static int orderIdcounter = 1;
 
 
+			static void Main()
 			{
+				// lägga in produkter
 
-				Console.WriteLine("1, View Order History");
-				Console.WriteLine("2, Order");
-				Console.WriteLine("3, Productss List");
 
-				static string GetChoice(int choice)
+				products.Add(new Products(1, "Test", 10));
+				products.Add(new Products(2, "Name", 50));
+				products.Add(new Products(3, "Catears", 100));
+
+			
+
+
+
 				{
 
-					string choose;
+					Console.WriteLine("1, View Order History");
+					Console.WriteLine("2, Order");
+					Console.WriteLine("3, Product List");
 
-					switch (choice)
+
+
+
+					static string GetChoice(int choice)
 					{
-						case 1:
-							choose = "View Order History";
-							break;
-						case 2:
-							choose = "Order";
-							break;
-						case 3:
-							choose = "Productss List";
-							break;
-						default:
-							choose = " Invalid Choice";
-							break;
+
+						string choose;
+
+						switch (choice)
+						{
+							case 1:
+								choose = "View Order History";
+								break;
+							case 2:
+								choose = "Order";
+								break;
+							case 3:
+
+								choose = "Product List";
+
+								choose = "Productss List";
+
+								break;
+							default:
+								choose = " Invalid Choice";
+								break;
+
+
+						}
+						return choose;
+					}
+
+
+					static int choose()
+					{
+
+						int choose;
+
 
 
 					}
-					return choose;
-				}
-
-				
 
 
-				}
-				
+					{
 
-				{
-					
 
 
 
 
 					}
 				}
-			}
-		}
-	
+			
+		
+
 
 
 
