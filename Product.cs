@@ -1,16 +1,17 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿
+using System.ComponentModel.DataAnnotations;
 using System.Runtime.CompilerServices;
 
 namespace WebShop6;
 
-public class Products
+public class Product
 {
     public readonly string? Name;
     public readonly int Price;
     public readonly string? Description;
 
 
-    public Products(string[] info)
+    public Product(string[] info)
     {
         Name = info[0];
         if (int.TryParse(info[1], out int value))
