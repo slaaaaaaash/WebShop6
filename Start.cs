@@ -59,9 +59,6 @@ namespace WebShop6
                 Thread.Sleep(1000);
                 ShowStart();
             }
-        
         }
-        }
-
     }
 }
