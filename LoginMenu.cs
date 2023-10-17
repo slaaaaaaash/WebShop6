@@ -62,7 +62,7 @@ public class LoginMenu
     public static IUser Login()
     {
         string[] users = File.ReadAllLines("users.csv");
-        IUser user = null;
+        IUser? user = null;
         while (true)
         {
             Console.Clear();
@@ -75,19 +75,28 @@ public class LoginMenu
                     Console.Write("Enter your password: ");
                     input = MaskedPass() ?? string.Empty;
 
-                    switch (info[2])
+                    if (info[1].Equals(input))
                     {
-                        case "Admin":
-                            user = new Admin(info[0]);
-                            break;
-                        case "Customer":
-                            user = new Customer(info[0], new List<Product>());
-                            break;
-                        default:
-                            throw new Exception();
+
+                        switch (info[2])
+                        {
+                            case "Admin":
+                                user = new Admin(info[0]);
+                                break;
+                            case "Customer":
+                                user = new Customer(info[0], new Cart($"{info[0]}"));
+                                break;
+                            default:
+                                throw new Exception();
+                        }
                     }
-                    return user;
+                    else
+                    {
+                        Console.WriteLine("\n\nWrong password, try again!");
+                        Thread.Sleep(850);
+                    }
                 }
+                return user;
             }
             Console.WriteLine("User does not exist");
         }

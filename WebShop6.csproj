@@ -9,7 +9,6 @@
 
   <ItemGroup>
     <Folder Include="bin\Debug\net7.0\Carts\" />
-    <Folder Include="Carts\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -131,7 +131,7 @@ do
 
 
     }
-    else if (user is Admin a)
+    else if (user is Admin admin)
     {
         bool adminReturn;
         do
@@ -140,7 +140,7 @@ do
             Console.Clear();
             Console.WriteLine($"******************************************************************");
             Console.WriteLine($"****************************************************************** \n");
-            Console.WriteLine(a.Username.ToUpper() + "! WELCOME to: The Time-travelling Feline Shop\n");
+            Console.WriteLine(admin.Username.ToUpper() + "! WELCOME to: The Time-travelling Feline Shop\n");
             Console.WriteLine(" 1. Manage Customer Info ");
             Console.WriteLine(" 2. Manage Products\n");
             Console.WriteLine(" 3. Manage Orders\n");
@@ -159,7 +159,7 @@ do
                         break;
 
                     case 1: //Manage Customer Info
-                        ManageCustomer.Menu();
+                        Admin.EditCustomer();
                         adminReturn = false;
                         break;
 
