@@ -11,6 +11,7 @@ public class Program
             Console.WriteLine($"{item.ProductName} , {item.ProductPrice};-");
 
         }
+        ShoppingCart.EditCart();
         Console.ReadKey();
     }
 }
