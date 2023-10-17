@@ -39,7 +39,7 @@ public class Product
 			products.Add(new Product(2, "Name", 50));
 			products.Add(new Product(3, "Catears", 100));
 
-		
+
 
 			{
 
@@ -47,7 +47,8 @@ public class Product
 				Console.WriteLine("2, Order");
 				Console.WriteLine("3, Product List");
 
-				static string GetChoice(int choice) {
+				static string GetChoice(int choice)
+				{
 
 					string choose;
 
@@ -56,22 +57,28 @@ public class Product
 						case 1:
 							choose = "View Order History";
 							break;
-                        case 2:
+						case 2:
 							choose = "Order";
-                            break;
-                        case 3:
-                            choose = "Product List";
-                            break;
+							break;
+						case 3:
+							choose = "Product List";
+							break;
 						default:
 							choose = " Invalid Choice";
 							break;
 
 
-                    }
+					}
 					return choose;
 				}
 
+				static int choose()
+				{
 
+					int choose;
+
+
+				}
 				
 
 				{
