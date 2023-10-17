@@ -1,6 +1,6 @@
 ﻿namespace WebShop6
 {
-    public enum ValidationResults
+    public enum Role
     {
         Admin,
         Customer,
