@@ -1,24 +1,4 @@
-/* <<<<<<< HEAD
-﻿namespace WebShop6
-{
-    public class Product
-    {
-
-        public string ProductName;
-        public int ProductPrice;
-        public int ProductDate;
-
-        public Product(string name, int price, int date)
-        {
-            ProductName = name;
-            ProductPrice = price;
-            ProductDate = date;
-        }
-    }
-=======
-*/
-
-﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 using System.Runtime.CompilerServices;
 
 namespace WebShop6;
