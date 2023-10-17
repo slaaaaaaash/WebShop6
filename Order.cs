@@ -10,13 +10,13 @@ public class Products
 
 {
 
-	public int Product{ get; }
+	public int Id{ get; }
 	public string Name { get; }
 	public double Price { get; }
 
 	public Products(int Products, string name, int price)
 	{
-		Product = Products;
+		Id = Products;
 		Name = name;
 		Price = price;
 	}
@@ -52,7 +52,7 @@ public class Products
 
 
 
-				static string GetChoice(int choice)
+				string GetChoice(int choice)
 				{
 
 					string choose;
@@ -62,16 +62,15 @@ public class Products
 						case 1:
 							choose = "View Order History";
 							break;
+
 						case 2:
 							choose = "Order";
 							break;
+
 						case 3:
-
 							choose = "Product List";
-
-							choose = "Productss List";
-
 							break;
+
 						default:
 							choose = " Invalid Choice";
 							break;
@@ -82,21 +81,54 @@ public class Products
 				}
 
 
-				static int choose()
+				static int choice()
 				{
 
 					int choose;
+					while (!int.TryParse(Console.ReadLine(), out choose))
+					{
 
+						Console.WriteLine("invalid, enter right choice");
+					}
 
+					return choose;
 
 				}
-
+				static void DisplayProductList()
 
 				{
+					Console.WriteLine("ProductList");
+
+					foreach (var Product in Products)
+					{
+						Console.WriteLine($"{Product.Id}. {Product.Name}. {Product.Price}.");
+
+					}
+
+					static void Order()
+					{
+						DisplayProductList();
+						Console.WriteLine(" Enter the Product you want");
+
+						int product = choice();
+
+						Product selectedProduct = null;
+
+						foreach (Products products in Products)
+						{
+							if selectedProduct == Products
+
+						}
+						
+						{
+
+						}
 
 
+					}
 
-
+					
+					
 
 				}
 
