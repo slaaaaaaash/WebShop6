@@ -4,29 +4,10 @@ using System.Xml.Linq;
 using System.Collections.Generic;
 
 namespace WebShop6;
-
-
-public class Products 
-
+public class Order
 {
 
-	public int Id{ get; }
-	public string Name { get; }
-	public double Price { get; }
-
-	public Products(int Products, string name, int price)
-	{
-		Id = Products;
-		Name = name;
-		Price = price;
-	}
-
-
-
-	public class Order
-	{
-
-		static List<Products> Products = new List<Products>();
+		static List<Product> Products = new List<Product>();
 		static List<Order> orders = new List<Order>();
 		static int orderIdcounter = 1;
 
@@ -37,9 +18,9 @@ public class Products
 
 
 
-			Products.Add(new Products(1, "Test", 10));
-			Products.Add(new Products(2, "Name", 50));
-			Products.Add(new Products(3, "Catears", 100));
+			Products.Add(new Product("Test", 10, ""));
+			Products.Add(new Product("Name", 50, ""));
+			Products.Add(new Product("Catears", 100, ""));
 
 
 
@@ -114,13 +95,22 @@ public class Products
 
 						Product selectedProduct = null;
 
-						foreach (Products products in Products)
-						{
-							if selectedProduct == Products
+						foreach (Product Product in Products)
+                        {
+                            if (selectedProduct == Product)
+                            {
+                               
 
-						}
-						
-						{
+                            {
+                               
+                            }
+                           
+
+
+
+                        }
+
+                        {
 
 						}
 
@@ -136,8 +126,7 @@ public class Products
 		}
 	}
 
-		}
-		
+				
 	
 
 
