@@ -31,7 +31,7 @@ public class Login
                 else
                 {
                     Customer customer = new Customer(UserName, Password);
-                    Customer.CustomerMenu(UserName);
+                    CustomerMenu.Main(UserName);
                 }
             }
         }
