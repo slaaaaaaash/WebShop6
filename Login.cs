@@ -26,7 +26,7 @@ public class Login
                 if (DetermineUserType(UserName).Equals(ValidationResults.Admin))
                 {
                     Admin admin = new Admin(UserName, Password);
-                    Admin.AdminMenu(UserName);
+                    AdminMenu.Menu(UserName);
                 }
                 else
                 {
